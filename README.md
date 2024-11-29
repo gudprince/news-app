@@ -7,17 +7,17 @@
 
 ## Installation
 
-*  `composer` install ()Install dependencies
+*  `composer install` ()Install dependencies
 
 * Set Database Credentials, in dotenv file (.env)
 
-* php artisan migrate (Migrate Database)
+* `php artisan migrate` (Migrate Database)
 
-* php artisan schedule:work (this command start the cron job to frequently update the database with news data)
+* `php artisan schedule:work` (this command start the cron job to frequently update the database with news data)
 
 ## Test
 
-php artisan test (test the application)
+`php artisan test` (test the application)
 
 ## Documentaion Link
 
