@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('author')->nullable();
-            $table->string('source_name');
-            $table->date('published_at');
+            $table->text('author')->nullable(); //some api has many authors whick makes the string longer
+            $table->string('source_name')->nullable();
+            $table->string('article_url')->nullable();
+            $table->text('image_url')->nullable(); //some api has longer string for image path
+            $table->timestamp('published_at')->nullable();
+            $table->string('slug');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
