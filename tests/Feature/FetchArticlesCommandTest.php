@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Article;
-use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
