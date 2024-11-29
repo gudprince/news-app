@@ -7,7 +7,7 @@
 
 ## Installation
 
-*  `composer install` ()Install dependencies
+*  `composer install` (Install dependencies)
 
 * Set Database Credentials, in dotenv file (.env)
 
