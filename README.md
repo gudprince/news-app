@@ -23,4 +23,4 @@
 
 https://documenter.getpostman.com/view/22023924/2sAYBXCX4x
 
-##Note: there is a default API keys for the third party APIs used for this project
+**Note: there is a default API keys for the third party APIs used for this project**
