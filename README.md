@@ -15,6 +15,8 @@
 
 * `php artisan schedule:work` (this command start the cron job to frequently update the database with news data)
 
+ * `php artisan serve` (this command start the application server)
+
 ## Test
 
 `php artisan test` (test the application)
