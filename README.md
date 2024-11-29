@@ -21,7 +21,7 @@
 
 `php artisan test` (test the application)
 
-## Documentaion Link
+## Postman Documentaion Link
 
 https://documenter.getpostman.com/view/22023924/2sAYBXCX4x
 
