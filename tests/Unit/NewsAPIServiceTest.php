@@ -8,38 +8,47 @@ use Tests\TestCase;
 
 class NewsAPIServiceTest extends TestCase
 {
-    /**
-     * Test fetching articles from NewsAPI
-     */
-    public function test_fetch_articles_from_newsapi()
-    {   
-        $body = include base_path('tests/Fixtures/Helpers/news-api-response.php');
+    protected string $url;
+    protected string $responseBodyPath = 'tests/Fixtures/Helpers/news-api-response.php';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
 
         $baseUrl = config('news_sources.news_api.url');
         $apiKey = config('news_sources.news_api.api_key');
+        $this->url = "{$baseUrl}/top-headlines?language=en&apiKey={$apiKey}";
+    }
 
-        $url = "{$baseUrl}/top-headlines?language=en&apiKey={$apiKey}";
-      
+    /**
+     * Helper method to mock HTTP responses
+     *
+     * @param array|string $body
+     * @param int $status
+     */
+    protected function mockHttpResponse($body, int $status = 200): void
+    {
         Http::fake([
-            $baseUrl.'/*' => Http::response($body, 200),
+            $this->url => Http::response($body, $status),
         ]);
+    }
+
+    public function test_fetch_articles_from_newsapi()
+    {
+        $body = include base_path($this->responseBodyPath);
+        $this->mockHttpResponse($body);
 
         $newsService = new NewsAPIService();
         $articles = $newsService->fetchArticles();
+
         $this->assertIsArray($articles);
         $this->assertCount(4, $articles);
         $this->assertEquals("Banco BPM says UniCredit's 'unusual' $10.5 billion takeover offer does not reflect its profitability - CNBC", $articles[0]['title']);
     }
 
-    /**
-     * Test empty response from NewsAPI
-     */
     public function test_empty_response_from_newsapi()
-    {   
-        $baseUrl = config('news_sources.news_api.url');
-        Http::fake([
-            $baseUrl.'/*' => Http::response(['articles' => []], 200)
-        ]);
+    {
+        $this->mockHttpResponse(['articles' => []]);
 
         $newsService = new NewsAPIService();
         $articles = $newsService->fetchArticles();
